@@ -13,6 +13,10 @@ public class UpdateAddressJob implements org.quartz.Job {
     @Override
     public void execute(final JobExecutionContext context) throws JobExecutionException {
         final DominoSalesClient dsc = new DominoSalesClient();
+        if (!dsc.isReady()) {
+            LOG.error("Could not initialise API client");
+            return;
+        }
         final List<AddressLink> list = dsc.loadLinkList(0, 6000);
         int count = 1;
         for (final AddressLink al : list) {

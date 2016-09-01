@@ -114,6 +114,7 @@
                             <mainClass>de.scanplus.notesphonenumbers.App</mainClass>
                         </manifest>
                     </archive>
+                    <finalName>NotesPhoneNumbers</finalName>
                 </configuration>
                 <executions>
                     <execution>

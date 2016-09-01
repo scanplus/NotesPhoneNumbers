@@ -72,8 +72,8 @@ public class DominoSalesClient {
                 && StringUtils.isNotBlank(dominoPass)
                 && StringUtils.isNotBlank(dominoSearchHost)
                 && StringUtils.isNotBlank(dominoSearchUrl)
-                && this.buildHTTPClient();
-        this.buildHTTPContext();
+                && this.buildHTTPClient()
+                && this.buildHTTPContext();
     }
 
     public boolean isReady() {
@@ -173,7 +173,7 @@ public class DominoSalesClient {
         }
     }
 
-    private void buildHTTPContext() {
+    private boolean buildHTTPContext() {
         HttpHost targetHost = new HttpHost(dominoSearchHost, 80, "http");
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
@@ -187,6 +187,7 @@ public class DominoSalesClient {
         this.clientContext = HttpClientContext.create();
         this.clientContext.setCredentialsProvider(credsProvider);
         this.clientContext.setAuthCache(authCache);
+        return true;
     }
 
 }
