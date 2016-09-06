@@ -7,6 +7,7 @@ package de.scanplus.notesphonenumbers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,7 @@ public class JSONUtils {
 
     static {
         MAPPER.findAndRegisterModules();
+        MAPPER.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
     }
 
     public static List<AddressLink> parseList(InputStream stream) throws IOException {
