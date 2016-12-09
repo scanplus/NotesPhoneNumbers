@@ -1,48 +1,40 @@
 package de.scanplus.notesphonenumbers;
 
-import org.apache.logging.log4j.LogManager;
-import static org.quartz.JobBuilder.newJob;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import static org.quartz.SimpleScheduleBuilder.repeatHourlyForever;
-import org.quartz.Trigger;
-import static org.quartz.TriggerBuilder.newTrigger;
-import org.quartz.impl.StdSchedulerFactory;
+import de.scanplus.notesphonenumbers.service.ServiceConfig;
+import de.scanplus.notesphonenumbers.web.WebConfig;
+import javax.servlet.Filter;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class App {
+public class App extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    private static final org.apache.logging.log4j.Logger LOG = LogManager.getLogger(App.class);
+    public static final String CHARACTER_ENCODING = "UTF-8";
 
-    private static Scheduler SCHED = null;
-
-    public static void main(String[] args) throws SchedulerException {
-        addShutdownHook();
-        SCHED = StdSchedulerFactory.getDefaultScheduler();
-        SCHED.start();
-
-        JobDetail job = newJob(UpdateAddressJob.class)
-                .withIdentity("UpdateAddresses", "UpdateGroup")
-                .build();
-        Trigger trigger = newTrigger()
-                .withIdentity("UpdateAddresses", "UpdateGroup")
-                .startNow().withSchedule(repeatHourlyForever())
-                .build();
-        SCHED.scheduleJob(job, trigger);
+    public App() {
+        super();
     }
 
-    private static void addShutdownHook() {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    LOG.info("Scheduler shutdown has begun");
-                    SCHED.shutdown();
-                } catch (SchedulerException ex) {
-                    LOG.error("Error in shutdown", ex);
-                }
-            }
-        });
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{WebConfig.class};
+    }
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{ServiceConfig.class};
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        final CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding(CHARACTER_ENCODING);
+        encodingFilter.setForceEncoding(true);
+        return new Filter[]{encodingFilter};
     }
 
 }
