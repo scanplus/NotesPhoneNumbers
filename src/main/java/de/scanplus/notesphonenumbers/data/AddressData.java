@@ -114,11 +114,11 @@ public class AddressData {
     }
 
     private List<String> normalizeNumber(List<String> numbers) {
-        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
         List<String> normalizedNumbers = new ArrayList<>();
         if (numbers == null) {
             return normalizedNumbers;
         }
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
         for (String number : numbers) {
             try {
                 if (StringUtils.isNotBlank(number)) {

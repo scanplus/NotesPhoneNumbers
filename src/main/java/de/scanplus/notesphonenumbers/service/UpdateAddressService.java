@@ -17,7 +17,7 @@ public class UpdateAddressService {
     @Autowired
     private DominoSalesClient dsc;
     
-    @Scheduled(fixedDelay = 1000 * 60 * 60)
+    @Scheduled(fixedDelay = 1000 * 60 * 60, initialDelay = 1000 * 60)
     public void execute() {
         if (!dsc.isReady()) {
             LOG.error("Could not initialise API client");
