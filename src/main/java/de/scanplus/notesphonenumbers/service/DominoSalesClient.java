@@ -96,11 +96,12 @@ public class DominoSalesClient {
             LOG.info("GET (list) responded with: " + resp.getStatusLine());
             if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
                 LOG.error("Server returned status code: " + resp.getStatusLine().getStatusCode());
+                EntityUtils.consumeQuietly(resp.getEntity());
                 return new ArrayList<>();
             }
             InputStream is = resp.getEntity().getContent();
             List<AddressLink> list = JSON.parseList(is);
-            is.close();
+            EntityUtils.consumeQuietly(resp.getEntity());
             return list;
         } catch (URISyntaxException | IOException ex) {
             LOG.error("", ex);
@@ -125,6 +126,7 @@ public class DominoSalesClient {
             LOG.info("PATCH responded with: " + resp.getStatusLine());
             if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
                 LOG.error("Server returned status code: " + resp.getStatusLine().getStatusCode());
+                EntityUtils.consumeQuietly(resp.getEntity());
                 return false;
             }
             EntityUtils.consumeQuietly(resp.getEntity());
@@ -152,7 +154,7 @@ public class DominoSalesClient {
             }
             InputStream is = resp.getEntity().getContent();
             AddressData ad = JSON.parseAddressData(is);
-            is.close();
+            EntityUtils.consumeQuietly(resp.getEntity());
             return ad;
         } catch (URISyntaxException | IOException ex) {
             LOG.error("", ex);
