@@ -150,6 +150,7 @@ public class DominoSalesClient {
             LOG.info("GET (data) responded with: " + resp.getStatusLine());
             if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
                 LOG.error("Server returned status code: " + resp.getStatusLine().getStatusCode());
+                EntityUtils.consumeQuietly(resp.getEntity());
                 return null;
             }
             InputStream is = resp.getEntity().getContent();
