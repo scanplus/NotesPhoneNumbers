@@ -14,10 +14,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <httpcomponents.version>4.5.5</httpcomponents.version>
-        <jackson.version>2.9.5</jackson.version>
+        <jackson.version>2.9.6</jackson.version>
         <log4j.version>2.11.0</log4j.version>
         <quartz.version>2.3.0</quartz.version>
-        <springframework.version>5.0.5.RELEASE</springframework.version>
+        <springframework.version>5.0.7.RELEASE</springframework.version>
         <maven.war.version>3.2.0</maven.war.version>
     </properties>
     
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.googlecode.libphonenumber</groupId>
             <artifactId>libphonenumber</artifactId>
-            <version>8.9.3</version>
+            <version>8.9.8</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
