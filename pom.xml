@@ -4,7 +4,7 @@
     <groupId>de.scanplus</groupId>
     <artifactId>NotesPhoneNumbers</artifactId>
     <packaging>war</packaging>
-    <version>1.4</version>
+    <version>1.5</version>
     <name>NotesPhoneNumbers</name>
     <url>https://github.com/ScanPlusGmbH/NotesPhoneNumbers</url>
     
@@ -13,25 +13,25 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <httpcomponents.version>4.5.12</httpcomponents.version>
-        <jackson.version>2.11.0</jackson.version>
-        <log4j.version>2.13.2</log4j.version>
+        <httpcomponents.version>4.5.13</httpcomponents.version>
+        <jackson.version>2.12.0</jackson.version>
+        <log4j.version>2.14.0</log4j.version>
         <quartz.version>2.3.2</quartz.version>
-        <springframework.version>5.2.5.RELEASE</springframework.version>
-        <maven.war.version>3.2.3</maven.war.version>
+        <springframework.version>5.3.1</springframework.version>
+        <maven.war.version>3.3.1</maven.war.version>
     </properties>
     
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.googlecode.libphonenumber</groupId>
             <artifactId>libphonenumber</artifactId>
-            <version>8.12.2</version>
+            <version>8.12.14</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.10</version>
+            <version>3.11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -131,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
